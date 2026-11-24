@@ -88,10 +88,13 @@ export async function POST(req: Request) {
     return Response.json({ error: "請輸入訊息。" }, { status: 400 });
   }
 
+  // 預設走本機 mock；僅在明確啟用且有金鑰時才呼叫 OpenAI
+  const useOpenAI =
+    process.env.QINGMO_USE_OPENAI === "1" ||
+    process.env.QINGMO_USE_OPENAI === "true";
   const apiKey = process.env.OPENAI_API_KEY?.trim();
 
-  // 無金鑰：回傳模擬串流，方便本機與預覽展示
-  if (!apiKey) {
+  if (!useOpenAI || !apiKey) {
     return new Response(mockSseStream(lastUser.content), {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",

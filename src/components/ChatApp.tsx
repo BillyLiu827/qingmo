@@ -296,7 +296,7 @@ export function ChatApp() {
           />
           <p className="composer-note">
             Enter 送出 · Shift+Enter 換行
-            {mockMode ? " · 目前為示範模式" : ""}
+            {mockMode ? " · 目前為本機模擬（預設）" : ""}
           </p>
         </div>
       </main>

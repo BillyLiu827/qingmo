@@ -1,33 +1,33 @@
 # 青墨 — AI 對話網站
 
-繁體中文 AI 聊天介面：側邊欄對話歷史、伺服器端 OpenAI 串流回覆、本機示範模式。
+繁體中文 AI 聊天介面：側邊欄對話歷史、**預設本機模擬串流**，可選接上 OpenAI。
 
 ## 技術棧
 
 - **Next.js**（App Router）+ TypeScript + Tailwind CSS
-- **OpenAI** Chat Completions（僅在 `/api/chat` 伺服器端呼叫）
+- **預設**：伺服器端本機 mock 串流（不需 API 金鑰）
+- **可選**：**OpenAI** Chat Completions（僅在 `/api/chat` 伺服器端呼叫）
 - 對話歷史：瀏覽器 `localStorage`（無帳號、無跨裝置同步）
 
 ## 本機執行
 
 ```bash
-cd chatbot
 npm install
 npm run dev
 ```
 
-開啟 [http://localhost:3000](http://localhost:3000)。
+開啟 [http://localhost:3000](http://localhost:3000)。開箱即用本機模擬回覆。
 
 ### 環境變數
 
 | 變數 | 說明 |
 |------|------|
-| `OPENAI_API_KEY` | OpenAI API 金鑰（**勿**放前端、勿提交） |
+| （無） | 預設 mock，可直接聊天 |
+| `QINGMO_USE_OPENAI` | 設為 `true` 或 `1` 才啟用 OpenAI |
+| `OPENAI_API_KEY` | OpenAI API 金鑰（**勿**放前端、勿提交；需搭配上項） |
 | `OPENAI_MODEL` | 可選，預設 `gpt-4o-mini` |
 
-未設定 `OPENAI_API_KEY` 時會進入**示範模式**（友善模擬串流回覆），介面仍可完整操作。
-
-正式發布請在 Cursor 以應用機密綁定 `OPENAI_API_KEY`，不要在聊天中貼上金鑰。
+未啟用 OpenAI 時一律走本機模擬串流；介面與側邊欄歷史皆可完整操作。
 
 ## 功能
 

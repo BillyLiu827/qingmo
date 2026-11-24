@@ -54,7 +54,7 @@ export function Sidebar({
 
         {mockMode && (
           <p className="mode-hint" role="status">
-            示範模式：尚未綁定 API 金鑰，回覆為本機模擬。
+            本機模擬模式（預設）：無需 API 金鑰即可聊天。
           </p>
         )}
 
